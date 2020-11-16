@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from "./App.vue"
+import App from "@/App.vue"
 // Vue.config.performance = true
 // Vue.config.devtools = true
 export var app = new Vue({

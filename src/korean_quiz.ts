@@ -1,7 +1,7 @@
 
 import * as kpop from 'kpop'
-import { QuizItem, FunctionQuizScorer, WholeWordQuizScorer } from './quiz_item'
-import korean_words from './assets/korean.json'
+import { QuizItem, FunctionQuizScorer, WholeWordQuizScorer } from '@/quiz_item'
+import korean_words from '@/assets/korean.json'
 
 
 export default function get_korean(): Array<QuizItem> {

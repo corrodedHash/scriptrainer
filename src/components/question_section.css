@@ -23,6 +23,7 @@
   background-color: lightblue;
   border-color: rgba(224, 240, 245, 0.151);
   border-radius: 4px;
+  margin-top: 3px;
 }
 
 #userinput.incorrect {

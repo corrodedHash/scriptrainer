@@ -13,19 +13,15 @@ export default Vue.extend({
     },
     watch: {
         answer: function (newAnswer: string, _) {
-            console.log(this.quizItem.rawQuestion)
             this.question_states = this.quizItem.characterState(newAnswer)
             if (this.quizItem.solved(newAnswer)) {
                 this.$emit('solved')
                 this.answer = ""
             }
+        },
+        quizItem: function (newItem: QuizItem, _): void {
+            this.question_states = this.quizItem.characterState("")
         }
-    },
-    created(){
-        console.log("created")
-    },
-    mounted(){
-        console.log("mounted")
     },
     computed: {
         answerIncorrect(): boolean {
@@ -39,8 +35,8 @@ export default Vue.extend({
         expectedAnswer(): string {
             return this.quizItem.expectedAnswers.join(', ')
         },
-        letterStates(): Array<[string, string]> {
-            let result: Array<[string, string]> = []
+        letterStates(): Array<[number, string, string]> {
+            let result: Array<[number, string, string]> = []
             const stateMap = (state: QuizCharacterState) => {
                 switch (state) {
                     case QuizCharacterState.Correct:
@@ -51,8 +47,10 @@ export default Vue.extend({
                         return "quizCharacterUntouched"
                 }
             }
+            let i = 0;
             for (const [char, state] of this.question_states) {
-                result.push([char, stateMap(state)])
+                result.push([i, char, stateMap(state)])
+                i += 1
             }
             return result
         }

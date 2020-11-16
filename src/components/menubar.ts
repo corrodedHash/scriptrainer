@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import dropdown from './dropdown.vue'
+import dropdown from '@/components/dropdown.vue'
 
 export default Vue.extend({
     components: {
