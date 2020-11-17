@@ -1,40 +1,12 @@
 import { defineComponent } from 'vue'
 
-import { QuizItem, QuizCharacterState } from "@/quiz_item"
+import QuizItem from "@/quiz_item"
 import get_braille from "@/braille_quiz"
 import get_cyrillic from '@/cyrillic_quiz'
 import get_korean from "@/korean_quiz"
 import question_section from "@/components/question_section.vue"
 import preview_section from "@/components/preview_section.vue"
-
-
-function getRndInteger(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-class QuestionQueue {
-    private _items: Array<QuizItem>;
-    private _queue: Array<number>
-    constructor(items: Array<QuizItem>) {
-        this._items = items;
-        this._queue = Array<number>()
-        for (let i = 0; i <= 4; i += 1) {
-            this._queue.push(getRndInteger(0, this._items.length))
-        }
-    }
-    get current() {
-        return this._items[this._queue[0]]
-    }
-    peek(index: number) {
-        return this._items[this._queue[index + 1]]
-    }
-    pop() {
-        const next_number = this._queue[1]
-        this._queue.shift()
-        this._queue.push(getRndInteger(0, this._items.length))
-        console.assert(next_number === this._queue[0])
-    }
-}
+import QuestionQueue from "@/quiz_queue"
 
 export default defineComponent({
     components: {
@@ -46,8 +18,8 @@ export default defineComponent({
     },
     data() {
         return {
-            question_queue: new QuestionQueue([]),
-            initialized: false,
+            question_queue: new QuestionQueue(get_braille()),
+            initialized: true,
         }
     },
     watch: {
@@ -59,18 +31,9 @@ export default defineComponent({
             } else if (this.trainer === "Cyrillic") {
                 this.question_queue = new QuestionQueue(get_cyrillic())
             } else {
-                throw "Unknown trainer"
+                throw "Unknown trainer " + this.trainer
             }
         }
-    },
-    methods: {
-        handleSolve() {
-            this.question_queue.pop()
-        },
-    },
-    created() {
-        this.question_queue = new QuestionQueue(get_braille())
-        this.initialized = true;
     },
     computed: {
         next_questions(): Array<QuizItem> {

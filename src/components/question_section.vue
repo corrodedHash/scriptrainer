@@ -1,12 +1,14 @@
 <template>
   <div id="question_section">
     <div id="main_question" class="question question-tooltip">
-      <span
-        v-for="[index, char, css] in letterStates"
-        v-bind:class="css"
-        v-bind:key="index"
-        >{{ char }}</span
-      >
+      <div id="letters">
+        <span
+          v-for="[index, char, css] in letterStates"
+          v-bind:class="css"
+          v-bind:key="index"
+          >{{ char }}</span
+        >
+      </div>
       <span class="question-tooltiptext">{{ expectedAnswer }}</span>
     </div>
     <input
@@ -15,12 +17,12 @@
       v-model="answer"
       autocomplete="off"
       autocorrect="off"
-      autocapitalize="off"
+      autocapitalize="none"
       spellcheck="false"
       autofocus
       v-bind:class="{ incorrect: answerIncorrect }"
       aria-label="Enter latin characters in here!"
-      placeholder="Transcription..."
+      placeholder="AaBb..."
     />
   </div>
 </template>

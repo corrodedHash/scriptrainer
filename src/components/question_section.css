@@ -19,7 +19,7 @@
   width: 10em;
   margin: auto;
   display: block;
-  text-align: center;
+  text-align: left;
   background-color: lightblue;
   border-color: rgba(224, 240, 245, 0.151);
   border-radius: 4px;
@@ -32,7 +32,8 @@
 
 .question-tooltip {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 
 .question-tooltip .question-tooltiptext {

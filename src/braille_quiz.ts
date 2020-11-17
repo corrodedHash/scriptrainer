@@ -1,5 +1,5 @@
-import { ListQuizScorer, QuizItem } from '@/quiz_item'
-
+import QuizItem from '@/quiz_item'
+import { ListQuizScorer } from '@/quiz_scorer'
 import brailledict from '@/assets/braille.json'
 import english_words from '@/assets/english_words.json'
 
@@ -17,7 +17,7 @@ function translate_braille(clear: string, dict: { [key: string]: string }): stri
 export default function get_braille(): Array<QuizItem> {
     let result = Array<QuizItem>()
     for (const word of english_words.data) {
-        result.push(new QuizItem(translate_braille(word, brailledict), [new ListQuizScorer(word.split(''))]))
+        result.push(new QuizItem(translate_braille(word, brailledict), [new ListQuizScorer(word.split(''), true)]))
     }
     return result
 }

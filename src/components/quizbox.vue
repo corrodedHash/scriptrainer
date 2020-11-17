@@ -1,13 +1,11 @@
 <template>
-    <div id="quizbox" v-if="initialized">
-      <preview_section
-        v-bind:quizItems="next_questions"
-      />
-      <question_section
-        v-bind:quizItem="question_queue.current"
-        v-on:solved="handleSolve"
-      />
-    </div>
+  <div id="quizbox">
+    <preview_section v-bind:quizItems="next_questions" />
+    <question_section
+      v-bind:quizItem="question_queue.current"
+      v-on:solved="this.question_queue.pop()"
+    />
+  </div>
 </template>
 
 <script lang="ts" src="./quizbox.ts" />

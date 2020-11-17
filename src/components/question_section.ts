@@ -1,4 +1,5 @@
-import { QuizCharacterState, QuizItem } from '@/quiz_item'
+import QuizItem from '@/quiz_item'
+import QuizCharacterState from '@/quiz_state'
 import { defineComponent } from 'vue'
 export default defineComponent({
     name: "question_section",
