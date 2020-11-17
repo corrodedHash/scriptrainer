@@ -3,6 +3,7 @@
     <ul id="horizontal_menu">
       <li class="menuitem_box">
         <dropdown
+          id="trainer_selection"
           v-on:selectionMade="handleTrainerSelect"
           v-bind:optionnames="['Korean', 'Braille', 'Cyrillic']"
           >Trainer Selection</dropdown
@@ -41,9 +42,6 @@ export default defineComponent({
   float: left;
 }
 
-#quizbox {
-  margin-top: 20px;
-}
 .menuitem {
   display: block;
   color: white;

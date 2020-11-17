@@ -42,7 +42,6 @@ export default defineComponent({
 }
 .question-tooltiptext {
   font-size: medium;
-  height: 60%;
   font-weight: normal;
   padding: 5px 20px;
   margin-left: 7px;

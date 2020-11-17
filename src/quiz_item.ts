@@ -8,6 +8,7 @@ export default class QuizItem {
     private _expected_answers: Array<string>;
 
     characterState(answer: string): [string, QuizCharacterState][] {
+        answer = answer.trim()
         const compute_correct_count = (states: [string, QuizCharacterState][]): [number, number] => {
             let correct_count = 0
             let wrong_count = 0
@@ -38,6 +39,7 @@ export default class QuizItem {
         return result === undefined ? [] : result
     }
     solved(answer: string): boolean {
+        answer = answer.trim()
         for (const scorer of this._scorers) {
             if (scorer.solved(answer, this._coded)) {
                 return true
