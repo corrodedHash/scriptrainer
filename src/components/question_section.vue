@@ -11,6 +11,7 @@
     </div>
     <input
       id="userinput"
+      type="text"
       v-model="answer"
       autocomplete="off"
       autocorrect="off"
@@ -18,6 +19,8 @@
       spellcheck="false"
       autofocus
       v-bind:class="{ incorrect: answerIncorrect }"
+      aria-label="Enter latin characters in here!"
+      placeholder="Transcription..."
     />
   </div>
 </template>

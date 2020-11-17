@@ -1,11 +1,8 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from "@/App.vue"
-// Vue.config.performance = true
-// Vue.config.devtools = true
-export var app = new Vue({
-    el: "#app",
-    render: h => h(App)
-});
+import './registerServiceWorker'
+
+export const app = createApp(App).mount("#app")
 let userinput = document.getElementById("userinput");
 if (userinput !== null) {
     userinput.focus()

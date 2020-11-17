@@ -1,11 +1,10 @@
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
 import quizbox from '@/components/quizbox.vue'
 import menubar from '@/components/menubar.vue'
 
 
-export default Vue.extend({
-    name: "App",
+export default defineComponent({
     components: {
         menubar, quizbox
     },

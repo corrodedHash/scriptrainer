@@ -1,6 +1,6 @@
 import { QuizCharacterState, QuizItem } from '@/quiz_item'
-import Vue from 'vue'
-export default Vue.extend({
+import { defineComponent } from 'vue'
+export default defineComponent({
     name: "question_section",
     props: {
         quizItem: { type: QuizItem, required: true }

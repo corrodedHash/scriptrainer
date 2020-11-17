@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
+import { defineComponent } from "vue";
+export default defineComponent({
   props: {
     optionnames: { type: Array, required: true },
   },
@@ -30,10 +30,11 @@ export default Vue.extend({
 <style scoped>
 /* Style The Dropdown Button */
 .dropbtn {
-  background-color: #4caf50;
+  background-color: #2b7e2e;
   color: white;
   padding: 16px;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
   cursor: pointer;
 }

@@ -1,7 +1,7 @@
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 import dropdown from '@/components/dropdown.vue'
 
-export default Vue.extend({
+export default defineComponent({
     components: {
         dropdown
     }, methods: {

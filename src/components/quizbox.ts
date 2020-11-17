@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
 import { QuizItem, QuizCharacterState } from "@/quiz_item"
 import get_braille from "@/braille_quiz"
@@ -36,7 +36,7 @@ class QuestionQueue {
     }
 }
 
-export default Vue.extend({
+export default defineComponent({
     components: {
         question_section, preview_section
     },
