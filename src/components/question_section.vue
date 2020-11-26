@@ -1,14 +1,7 @@
 <template>
   <div id="question_section">
     <div id="main_question" class="question question-tooltip">
-      <div id="letters">
-        <span
-          v-for="[index, char, css] in letterStates"
-          v-bind:class="css"
-          v-bind:key="index"
-          >{{ char }}</span
-        >
-      </div>
+      <matching-letters v-bind:statefulLetters="question_states" />
       <span class="question-tooltiptext">{{ expectedAnswer }}</span>
     </div>
     <input

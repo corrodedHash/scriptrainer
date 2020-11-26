@@ -57,14 +57,3 @@
 .question-tooltip:hover .question-tooltiptext {
   visibility: visible;
 }
-.quizCharacterCorrect {
-  color: green;
-}
-
-.quizCharacterWrong {
-  color: red;
-}
-
-.quizCharacterUntouched {
-  color: black;
-}
