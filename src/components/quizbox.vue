@@ -1,9 +1,13 @@
 <template>
   <div id="quizbox">
-    <preview_section v-bind:quizItems="next_questions" />
+    <preview_section
+      v-bind:quizItems="next_questions"
+      v-if="question_queue !== null"
+    />
     <question_section
       v-bind:quizItem="question_queue.current"
-      v-on:solved="this.question_queue.pop()"
+      v-on:solved="question_queue.pop()"
+      v-if="question_queue !== null"
     />
   </div>
 </template>
@@ -30,18 +34,32 @@ export default defineComponent({
   },
   data() {
     return {
-      question_queue: new QuestionQueue(get_braille()),
+      question_queue: null as QuestionQueue | null,
       initialized: true,
     };
+  },
+  mounted() {
+    get_braille().then((value: QuizItem[]) => {
+      this.question_queue = new QuestionQueue(value);
+    });
   },
   watch: {
     trainer: function() {
       if (this.trainer === "Braille") {
-        this.question_queue = new QuestionQueue(get_braille());
+        this.question_queue = null;
+        get_braille().then((value: QuizItem[]) => {
+          this.question_queue = new QuestionQueue(value);
+        });
       } else if (this.trainer === "Korean") {
-        this.question_queue = new QuestionQueue(get_korean());
+        this.question_queue = null;
+        get_korean().then((value: QuizItem[]) => {
+          this.question_queue = new QuestionQueue(value);
+        });
       } else if (this.trainer === "Cyrillic") {
-        this.question_queue = new QuestionQueue(get_cyrillic());
+        this.question_queue = null;
+        get_cyrillic().then((value: QuizItem[]) => {
+          this.question_queue = new QuestionQueue(value);
+        });
       } else {
         throw "Unknown trainer " + this.trainer;
       }
@@ -49,6 +67,9 @@ export default defineComponent({
   },
   computed: {
     next_questions(): Array<QuizItem> {
+      if (this.question_queue === null) {
+        return [];
+      }
       let result = [];
       for (let i = this.peekCount - 1; i >= 0; i -= 1) {
         result.push(this.question_queue.peek(i));
