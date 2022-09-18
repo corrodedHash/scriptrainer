@@ -1,4 +1,5 @@
 import QuizCharacterState from '@/quiz_state'
+
 export default abstract class QuizScorer {
     abstract score(answer: string, question: string): [string, QuizCharacterState][];
     abstract expected_answer(question: string): string;
@@ -15,10 +16,12 @@ export default abstract class QuizScorer {
 
 export class WholeWordQuizScorer extends QuizScorer {
     private _word: string;
+
     constructor(word: string) {
         super()
         this._word = word
     }
+
     score(answer: string, question: string): [string, QuizCharacterState][] {
         let state = QuizCharacterState.Wrong
         if (answer === this._word) {
@@ -32,6 +35,7 @@ export class WholeWordQuizScorer extends QuizScorer {
         }
         return result
     }
+
     expected_answer(_: string): string {
         return this._word
     }
@@ -39,10 +43,12 @@ export class WholeWordQuizScorer extends QuizScorer {
 
 export abstract class PerCharQuizScorer extends QuizScorer {
     private _anycase: boolean;
+
     constructor(anycase: boolean) {
         super()
         this._anycase = anycase
     }
+
     score(answer: string, question: string): [string, QuizCharacterState][] {
         let result: [string, QuizCharacterState][] = []
         if (this._anycase) {
@@ -63,6 +69,7 @@ export abstract class PerCharQuizScorer extends QuizScorer {
         }
         return result
     }
+
     expected_answer(question: string): string {
         let result = ""
         for (let index = 0; index < question.length; index++) {
@@ -71,15 +78,18 @@ export abstract class PerCharQuizScorer extends QuizScorer {
         }
         return result
     }
+
     abstract get_syllable(character: string, index: number): string;
 }
 
 export class DictQuizScorer extends PerCharQuizScorer {
     private _dict: { [key: string]: string };
+
     constructor(dict: { [key: string]: string }, anycase: boolean) {
         super(anycase);
         this._dict = dict
     }
+
     get_syllable(character: string, _: number): string {
         if (this._dict[character] === undefined) {
             throw [this, character, "character not in dict"]
@@ -90,10 +100,12 @@ export class DictQuizScorer extends PerCharQuizScorer {
 
 export class ListQuizScorer extends PerCharQuizScorer {
     private _syllables: Array<string>;
+
     constructor(syllables: string[], anycase: boolean) {
         super(anycase)
         this._syllables = syllables
     }
+
     get_syllable(_: string, index: number): string {
         return this._syllables[index]
     }
@@ -101,10 +113,12 @@ export class ListQuizScorer extends PerCharQuizScorer {
 
 export class FunctionQuizScorer extends PerCharQuizScorer {
     private _func: (char: string) => string;
+
     constructor(func: (char: string) => string, anycase: boolean) {
         super(anycase)
         this._func = func
     }
+
     get_syllable(character: string, _: number) {
         return this._func(character)
     }

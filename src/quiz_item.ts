@@ -38,6 +38,7 @@ export default class QuizItem {
         }
         return result === undefined ? [] : result
     }
+
     solved(answer: string): boolean {
         answer = answer.trim()
         for (const scorer of this._scorers) {
@@ -47,15 +48,14 @@ export default class QuizItem {
         }
         return false
     }
+
     get expectedAnswers(): Array<string> {
-        let result = []
-        for (const scorer of this._scorers) {
-            result.push(scorer.expected_answer(this._coded))
-        }
+        let result = this._scorers.map((scorer)=> scorer.expected_answer(this._coded))
         return result.filter((v, i, a) => {
             return a.indexOf(v) === i
         })
     }
+
     constructor(coded: string, scorers: QuizScorer[], description?: string) {
         this._coded = coded;
         this._scorers = scorers
@@ -68,9 +68,11 @@ export default class QuizItem {
             return a.indexOf(v) === i
         })
     }
+
     get desc() {
         return this._description
     }
+
     get rawQuestion(): string {
         return this._coded
     }

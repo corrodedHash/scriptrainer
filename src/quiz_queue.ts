@@ -7,6 +7,7 @@ function getRndInteger(min: number, max: number) {
 export default class QuestionQueue {
     private _items: Array<QuizItem>;
     private _queue: Array<number>
+
     constructor(items: Array<QuizItem>) {
         this._items = items;
         this._queue = Array<number>()
@@ -14,12 +15,15 @@ export default class QuestionQueue {
             this._queue.push(getRndInteger(0, this._items.length))
         }
     }
+
     get current() {
         return this._items[this._queue[0]]
     }
+
     peek(index: number) {
         return this._items[this._queue[index + 1]]
     }
+
     pop() {
         const next_number = this._queue[1]
         this._queue.shift()
