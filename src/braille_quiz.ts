@@ -17,7 +17,7 @@ function translate_braille(
 let cached_result: Array<QuizItem> = [];
 export default async function get_braille(): Promise<Array<QuizItem>> {
   if (cached_result.length === 0) {
-    let result = Array<QuizItem>();
+    const result = Array<QuizItem>();
 
     const brailledict = await import("@/assets/braille.json");
     const english_words = await import("@/assets/english_words.json");
