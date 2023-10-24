@@ -1,26 +1,15 @@
 <template>
   <div id="next_questions_box">
-    <div
-      v-for="index in quizItems.length"
-      class="question question-tooltip"
-      v-bind:key="index"
-    >
+    <div v-for="index in quizItems.length" class="question question-tooltip" v-bind:key="index">
       {{ quizItems[index - 1].rawQuestion }}
-      <span class="question-tooltiptext">{{
-        quizItems[index - 1].expectedAnswers.join(",")
-      }}</span>
+      <span class="question-tooltiptext">{{ quizItems[index - 1].expectedAnswers.join(',') }}</span>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "preview_section",
-  props: {
-    quizItems: { type: Array, required: true },
-  },
-});
+<script lang="ts" setup>
+import type QuizItem from '@/quiz_item'
+defineProps<{ quizItems: QuizItem[] }>()
 </script>
 <style scoped>
 .question-tooltip {
@@ -57,6 +46,7 @@ export default defineComponent({
   border-radius: 5px;
   border: 2px solid #73ad21;
   background-color: aliceblue;
+  overflow-x: hidden;
 }
 
 .question {

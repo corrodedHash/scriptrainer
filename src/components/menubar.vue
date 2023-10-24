@@ -5,7 +5,7 @@
         <dropdown
           id="trainer_selection"
           v-on:selectionMade="handleTrainerSelect"
-          v-bind:optionnames="['Korean', 'Braille', 'Cyrillic']"
+          v-bind:optionnames="['Korean', 'Braille', 'Cyrillic', 'Myanmar']"
           >Trainer Selection</dropdown
         >
       </li>
@@ -14,19 +14,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import dropdown from "@/components/dropdown.vue";
+import { defineComponent } from 'vue'
+import dropdown from '@/components/dropdown.vue'
 
 export default defineComponent({
   components: {
-    dropdown,
+    dropdown
   },
   methods: {
     handleTrainerSelect(name: string) {
-      this.$emit("selectionMade", name);
-    },
-  },
-});
+      this.$emit('selectionMade', name)
+    }
+  }
+})
 </script>
 <style scoped>
 #horizontal_menu {

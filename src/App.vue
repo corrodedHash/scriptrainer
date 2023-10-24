@@ -2,40 +2,24 @@
   <div id="app">
     <menubar v-on:selectionMade="selectTrainer" />
     <quizbox v-bind:trainer="trainer" />
-    {{ bla }}
   </div>
 </template>
 
-<script lang="ts" >
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+import { to_syllables } from '@/burmese/mya2rom.mjs'
 
 import quizbox from '@/components/quizbox.vue'
 import menubar from '@/components/menubar.vue'
-import { Script, convert} from '@pnfo/pali-converter'
-
-
-export default defineComponent({
-    components: {
-        menubar, quizbox
-    },
-    props: {
-        peekCount: { type: Number, default: 3 }
-    },
-    data() {
-        return {
-            trainer: "Braille"
-            , bla: convert('ဖြိုး', Script.RO, Script.MY)
-        }
-    },
-    methods: {
-        selectTrainer(trainer: string) {
-            this.trainer = trainer
-        }
-    },
-})
+const trainer = ref('Braille')
+const selectTrainer = (t: string) => {
+  trainer.value = t
+}
+console.log(to_syllables('ရေးသားတည်းဖြတ်သော'))
 </script>
 
-<style scoped >
+<style scoped>
 #quizbox {
   display: flex;
   flex-direction: column;
@@ -52,5 +36,4 @@ export default defineComponent({
   width: 100%;
   height: 100%;
 }
-
 </style>

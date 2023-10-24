@@ -15,17 +15,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
   props: {
-    optionnames: { type: Array, required: true },
+    optionnames: { type: Array, required: true }
   },
   methods: {
     clickHandler(name: string) {
-      this.$emit("selectionMade", name);
-    },
-  },
-});
+      this.$emit('selectionMade', name)
+    }
+  }
+})
 </script>
 <style scoped>
 /* Style The Dropdown Button */

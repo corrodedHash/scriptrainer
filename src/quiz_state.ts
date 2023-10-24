@@ -1,4 +1,6 @@
 enum QuizCharacterState {
-    Correct, Wrong, Untouched
+  Correct,
+  Wrong,
+  Untouched
 }
-export default QuizCharacterState;
+export default QuizCharacterState
