@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch, type Ref } from 'vue'
 
 import QuizItem from '@/quiz_item'
 import get_braille from '@/quiz/braille_quiz'
@@ -22,7 +22,7 @@ import preview_section from '@/components/preview_section.vue'
 import QuestionQueue from '@/quiz_queue'
 
 const props = defineProps<{ peekCount?: number; trainer: string }>()
-const question_queue = ref(null as QuestionQueue | null)
+const question_queue: Ref<QuestionQueue | null> = ref(null)
 onMounted(() => {
   get_braille().then((value: QuizItem[]) => {
     question_queue.value = new QuestionQueue(value)

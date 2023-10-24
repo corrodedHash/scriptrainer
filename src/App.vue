@@ -1,22 +1,17 @@
 <template>
   <div id="app">
-    <menubar v-on:selectionMade="selectTrainer" />
-    <quizbox v-bind:trainer="trainer" />
+    <menubar @selectionMade="selectTrainer" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-import { to_syllables } from '@/burmese/mya2rom.mjs'
-
-import quizbox from '@/components/quizbox.vue'
 import menubar from '@/components/menubar.vue'
-const trainer = ref('Braille')
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const selectTrainer = (t: string) => {
-  trainer.value = t
+  router.push(`/${t}`)
 }
-console.log(to_syllables('ရေးသားတည်းဖြတ်သော'))
 </script>
 
 <style scoped>

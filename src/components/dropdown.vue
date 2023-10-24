@@ -14,18 +14,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  props: {
-    optionnames: { type: Array, required: true }
-  },
-  methods: {
-    clickHandler(name: string) {
-      this.$emit('selectionMade', name)
-    }
-  }
-})
+<script lang="ts" setup>
+defineProps<{ optionnames: string[] }>()
+const emits = defineEmits<{ (e: 'selectionMade', name: string): void }>()
+function clickHandler(name: string) {
+  emits('selectionMade', name)
+}
 </script>
 <style scoped>
 /* Style The Dropdown Button */
