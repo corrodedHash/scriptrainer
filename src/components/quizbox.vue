@@ -21,7 +21,7 @@ import question_section from '@/components/question_section.vue'
 import preview_section from '@/components/preview_section.vue'
 import QuestionQueue from '@/quiz_queue'
 
-const props = defineProps<{ peekCount?: number; trainer: string }>()
+const props = withDefaults(defineProps<{ peekCount?: number; trainer: string }>(), { peekCount: 3 })
 const question_queue: Ref<QuestionQueue | null> = ref(null)
 onMounted(() => {
   get_braille().then((value: QuizItem[]) => {
@@ -52,8 +52,7 @@ const next_questions = computed(() => {
     return []
   }
   let result = []
-  const pc = props.peekCount === undefined ? 3 : props.peekCount
-  for (let i = pc - 1; i >= 0; i -= 1) {
+  for (let i = props.peekCount - 1; i >= 0; i -= 1) {
     result.push(question_queue.value.peek(i))
   }
   return result
