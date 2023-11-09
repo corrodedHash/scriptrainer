@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <menubar @selectionMade="selectTrainer" />
+    <menu-bar v-on:selectionMade="selectTrainer" />
     <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts" setup>
-import menubar from '@/components/menubar.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
+
+import MenuBar from '@/components/MenuBar.vue'
 const selectTrainer = (t: string) => {
   router.push(`/${t}`)
 }

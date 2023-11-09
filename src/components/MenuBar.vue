@@ -2,11 +2,11 @@
   <div id="menubar">
     <ul id="horizontal_menu">
       <li class="menuitem_box">
-        <dropdown
+        <drop-down
           id="trainer_selection"
           v-on:selectionMade="handleTrainerSelect"
           v-bind:optionnames="['Korean', 'Braille', 'Cyrillic', 'Myanmar']"
-          >Trainer Selection</dropdown
+          >Trainer Selection</drop-down
         >
       </li>
     </ul>
@@ -15,11 +15,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import dropdown from '@/components/dropdown.vue'
+import DropDown from '@/components/DropDown.vue'
 
 export default defineComponent({
   components: {
-    dropdown
+    DropDown
   },
   methods: {
     handleTrainerSelect(name: string) {

@@ -3,12 +3,12 @@ import App from '@/App.vue'
 // import './registerServiceWorker'
 
 import { createRouter, createWebHashHistory } from 'vue-router'
-import quizboxVue from './components/quizbox.vue'
+import QuizBox from './components/QuizBox.vue'
 
 const router = createRouter({
   history: createWebHashHistory('/scriptrainer/'),
   routes: [
-    { path: '/:trainer', component: quizboxVue, props: true },
+    { path: '/:trainer', component: QuizBox, props: true },
     {
       path: '/',
       redirect: '/Braille'

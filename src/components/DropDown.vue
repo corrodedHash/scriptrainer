@@ -5,8 +5,8 @@
       <div
         class="dropdown-item"
         v-for="optname in optionnames"
-        v-bind:key="optname"
-        v-on:click="clickHandler(optname)"
+        :key="optname"
+        @:click="handleClick(optname)"
       >
         {{ optname }}
       </div>
@@ -17,9 +17,7 @@
 <script lang="ts" setup>
 defineProps<{ optionnames: string[] }>()
 const emits = defineEmits<{ (e: 'selectionMade', name: string): void }>()
-function clickHandler(name: string) {
-  emits('selectionMade', name)
-}
+const handleClick = (name: string) => emits('selectionMade', name)
 </script>
 <style scoped>
 /* Style The Dropdown Button */
